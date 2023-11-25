@@ -1,6 +1,6 @@
 package co.edu.cue.CinemaGarcia.mapping.dtos;
 
-public record ClientDto(String id,
+public record ClientDto(int id,
                         String name,
                         String phone) {
 }

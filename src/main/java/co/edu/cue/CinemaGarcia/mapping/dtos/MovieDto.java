@@ -1,8 +1,7 @@
 package co.edu.cue.CinemaGarcia.mapping.dtos;
 
-import co.edu.cue.CinemaGarcia.domain.entities.Room;
+import org.springframework.stereotype.Component;
 
-public record MovieDto(String id,
-                       String name,
-                       Room room) {
+public record MovieDto(int id,
+                       String name) {
 }

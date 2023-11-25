@@ -10,16 +10,14 @@ public class ReservationMapper {
     public static ReservationDto mapFrom(Reservation source){
         return new ReservationDto(source.getId(),
                 source.getClient(),
-                source.getMovie(),
                 source.getSeat(),
-                source.getSchedule());
+                source.getFunction());
     }
     public static Reservation mapFrom(ReservationDto source){
         return new Reservation(source.id(),
                 source.client(),
-                source.movie(),
                 source.seat(),
-                source.schedule());
+                source.function());
     }
     public static List<ReservationDto> mapFrom(List<Reservation> source){
         return source.stream().map(ReservationMapper::mapFrom).collect(Collectors.toList());

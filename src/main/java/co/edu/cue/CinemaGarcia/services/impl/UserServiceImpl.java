@@ -1,30 +1,35 @@
 package co.edu.cue.CinemaGarcia.services.impl;
 
+import co.edu.cue.CinemaGarcia.domain.entities.User;
 import co.edu.cue.CinemaGarcia.mapping.dtos.UserDto;
-import co.edu.cue.CinemaGarcia.services.Service;
+import co.edu.cue.CinemaGarcia.repositories.UserRepository;
+import co.edu.cue.CinemaGarcia.services.UserService;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
+@Service
+public class UserServiceImpl implements UserService {
+    private final UserRepository uRep;
 
-public class UserServiceImpl implements Service<UserDto> {
-    @Override
-    public List<UserDto> list() {
-        System.out.println("Here is the list");
-        return null;
+    public UserServiceImpl(UserRepository uRep) {
+        this.uRep = uRep;
     }
 
     @Override
-    public UserDto byId(Long id) {
-        System.out.println("Here is byId");
-        return null;
-    }
-
-    @Override
-    public void save(UserDto userDto) {
+    public void save(User t) {
         System.out.println("Here is to save");
+        uRep.save(t);
     }
 
     @Override
-    public void delete(Long id) {
-        System.out.println("Here is to delete");
+    public void update(User t) {
+        System.out.println("Here is to update");
+        uRep.save(t);
     }
+
+    @Override
+    public User byId(int id) {
+        System.out.println("Here is to find by id");
+        return uRep.findById(id).orElseThrow();
+    }
+
 }

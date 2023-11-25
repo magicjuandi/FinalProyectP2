@@ -1,30 +1,24 @@
 package co.edu.cue.CinemaGarcia.services.impl;
 
+import co.edu.cue.CinemaGarcia.domain.entities.Seat;
 import co.edu.cue.CinemaGarcia.mapping.dtos.SeatDto;
-import co.edu.cue.CinemaGarcia.services.Service;
+import co.edu.cue.CinemaGarcia.repositories.SeatRepository;
+import co.edu.cue.CinemaGarcia.services.SeatService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public class SeatServiceImpl implements Service<SeatDto> {
+@Service
+public class SeatServiceImpl implements SeatService {
+    private final SeatRepository sRep;
+
+    public SeatServiceImpl(SeatRepository sRep) {
+        this.sRep = sRep;
+    }
+
     @Override
-    public List<SeatDto> list() {
+    public List<Seat> list() {
         System.out.println("Here is the list");
-        return null;
-    }
-
-    @Override
-    public SeatDto byId(Long id) {
-        System.out.println("Here is byId");
-        return null;
-    }
-
-    @Override
-    public void save(SeatDto seatDto) {
-        System.out.println("Here is to save");
-    }
-
-    @Override
-    public void delete(Long id) {
-        System.out.println("Here is to delete");
+        return (List<Seat>) sRep.findAll();
     }
 }

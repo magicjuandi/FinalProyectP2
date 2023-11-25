@@ -15,7 +15,10 @@ import lombok.NoArgsConstructor;
 public class Seat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private int id;
     private String position;
+    @ManyToOne
+    @JoinColumn(name = "roomId")
     private Room room;
+    private boolean available;
 }

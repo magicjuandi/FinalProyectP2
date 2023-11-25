@@ -1,5 +1,5 @@
 package co.edu.cue.CinemaGarcia.mapping.dtos;
 
-public record RoomDto(String id,
+public record RoomDto(int id,
                       String number) {
 }

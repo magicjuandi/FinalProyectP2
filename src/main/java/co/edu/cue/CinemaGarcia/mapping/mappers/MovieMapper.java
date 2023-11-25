@@ -9,13 +9,11 @@ import java.util.stream.Collectors;
 public class MovieMapper {
     public static MovieDto mapFrom(Movie source){
         return new MovieDto(source.getId(),
-                source.getName(),
-                source.getRoom());
+                source.getName());
     }
     public static Movie mapFrom(MovieDto source){
         return new Movie(source.id(),
-                source.name(),
-                source.room());
+                source.name());
     }
     public static List<MovieDto> mapFrom(List<Movie> source){
         return source.stream().map(MovieMapper::mapFrom).collect(Collectors.toList());

@@ -1,30 +1,24 @@
 package co.edu.cue.CinemaGarcia.services.impl;
 
+import co.edu.cue.CinemaGarcia.domain.entities.Room;
 import co.edu.cue.CinemaGarcia.mapping.dtos.RoomDto;
-import co.edu.cue.CinemaGarcia.services.Service;
+import co.edu.cue.CinemaGarcia.repositories.RoomRepository;
+import co.edu.cue.CinemaGarcia.services.RoomService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public class RoomServiceImpl implements Service<RoomDto> {
+@Service
+public class RoomServiceImpl implements RoomService {
+    private final RoomRepository rRep;
+
+    public RoomServiceImpl(RoomRepository rRep) {
+        this.rRep = rRep;
+    }
+
     @Override
-    public List<RoomDto> list() {
+    public List<Room> list() {
         System.out.println("Here is the list");
-        return null;
-    }
-
-    @Override
-    public RoomDto byId(Long id) {
-        System.out.println("Here is byId");
-        return null;
-    }
-
-    @Override
-    public void save(RoomDto roomDto) {
-        System.out.println("Here is to save");
-    }
-
-    @Override
-    public void delete(Long id) {
-        System.out.println("Here is to delete");
+        return (List<Room>) rRep.findAll();
     }
 }

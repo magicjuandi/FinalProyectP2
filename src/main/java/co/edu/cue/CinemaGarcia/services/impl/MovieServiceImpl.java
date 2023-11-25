@@ -1,31 +1,36 @@
 package co.edu.cue.CinemaGarcia.services.impl;
 
+import co.edu.cue.CinemaGarcia.domain.entities.Movie;
 import co.edu.cue.CinemaGarcia.mapping.dtos.MovieDto;
-import co.edu.cue.CinemaGarcia.services.Service;
+import co.edu.cue.CinemaGarcia.repositories.MovieRepository;
+import co.edu.cue.CinemaGarcia.services.MovieService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public class MovieServiceImpl implements Service<MovieDto> {
+@Service
+public class MovieServiceImpl implements MovieService {
+    @Autowired
+    private MovieRepository mRep;
+
+
 
     @Override
-    public List<MovieDto> list() {
+    public List<Movie> list() {
         System.out.println("Here is the list");
-        return null;
+        return (List<Movie>) mRep.findAll();
     }
 
     @Override
-    public MovieDto byId(Long id) {
+    public Movie byId(int id) {
         System.out.println("Here is byId");
-        return null;
+        return mRep.findById(id).orElseThrow();
     }
 
     @Override
-    public void save(MovieDto movieDto) {
+    public void save(Movie t) {
         System.out.println("Here is to save");
-    }
-
-    @Override
-    public void delete(Long id) {
-        System.out.println("Here is to delete");
+        mRep.save(t);
     }
 }

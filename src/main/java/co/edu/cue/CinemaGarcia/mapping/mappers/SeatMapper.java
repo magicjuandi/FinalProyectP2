@@ -10,12 +10,14 @@ public class SeatMapper {
     public static SeatDto mapFrom(Seat source){
         return new SeatDto(source.getId(),
                 source.getPosition(),
-                source.getRoom());
+                source.getRoom(),
+                source.isAvailable());
     }
     public static Seat mapFrom(SeatDto source){
         return new Seat(source.id(),
                 source.position(),
-                source.room());
+                source.room(),
+                source.available());
     }
     public static List<SeatDto> mapFrom(List<Seat> source) {
         return source.stream().map(SeatMapper::mapFrom).collect(Collectors.toList());

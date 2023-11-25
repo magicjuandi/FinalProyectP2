@@ -2,7 +2,8 @@ package co.edu.cue.CinemaGarcia.mapping.dtos;
 
 import co.edu.cue.CinemaGarcia.domain.entities.Room;
 
-public record SeatDto(String id,
+public record SeatDto(int id,
                       String position,
-                      Room room) {
+                      Room room,
+                      boolean available) {
 }

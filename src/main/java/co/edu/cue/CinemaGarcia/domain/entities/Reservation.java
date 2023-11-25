@@ -15,9 +15,14 @@ import lombok.NoArgsConstructor;
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private int id;
+    @ManyToOne
+    @JoinColumn(name= "clientId")
     private Client client;
-    private Movie movie;
+    @ManyToOne
+    @JoinColumn(name= "seatId")
     private Seat seat;
-    private Schedule schedule;
+    @ManyToOne
+    @JoinColumn(name= "functionId")
+    private Function function;
 }
