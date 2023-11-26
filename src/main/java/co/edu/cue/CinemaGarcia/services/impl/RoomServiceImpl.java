@@ -21,4 +21,9 @@ public class RoomServiceImpl implements RoomService {
         System.out.println("Here is the list");
         return (List<Room>) rRep.findAll();
     }
+
+    @Override
+    public Room byId(int id) {
+        return rRep.findById(id).orElseThrow();
+    }
 }
