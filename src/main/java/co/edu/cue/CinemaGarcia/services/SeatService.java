@@ -8,4 +8,8 @@ import java.util.List;
 
 public interface SeatService {
     List<Seat> list();
+    Seat byId(int id);
+    List<Seat> findAllByRoomId(int id);
+    List<Seat> findByAvailable();
+    Seat save(Seat t);
 }

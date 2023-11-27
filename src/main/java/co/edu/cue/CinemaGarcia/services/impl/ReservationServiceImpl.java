@@ -31,6 +31,7 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public void save(Reservation t) {
         System.out.println("Here is to save");
+        t.getSeat().setAvailable(true);
         rRep.save(t);
     }
 }

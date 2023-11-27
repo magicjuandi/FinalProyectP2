@@ -6,6 +6,8 @@ import co.edu.cue.CinemaGarcia.repositories.ClientRepository;
 import co.edu.cue.CinemaGarcia.services.ClientService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ClientServiceImpl implements ClientService {
     private final ClientRepository cRep;
@@ -31,4 +33,10 @@ public class ClientServiceImpl implements ClientService {
         System.out.println("Here is to find by id");
         return cRep.findById(id).orElseThrow();
     }
+
+    @Override
+    public Client findByNameAndPhone(String name, String phone){
+        return cRep.findByNameAndPhone(name,phone);
+    }
+
 }
