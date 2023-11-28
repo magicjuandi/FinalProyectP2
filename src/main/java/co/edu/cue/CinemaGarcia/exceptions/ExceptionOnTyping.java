@@ -4,4 +4,6 @@ public class ExceptionOnTyping extends RuntimeException{
     public ExceptionOnTyping(String message){
         super(message);
     }
+
+
 }

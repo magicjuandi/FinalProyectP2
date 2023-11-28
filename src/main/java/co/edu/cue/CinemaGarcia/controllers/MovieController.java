@@ -62,7 +62,7 @@ public class MovieController {
         return modelAndView;
     }
     @PostMapping("movie/deleted")
-    public String deleteMovie(@RequestParam("id") int id){
+    public String deleteMovie(@RequestParam("id") int id) throws ExceptionOnTyping{
         try{
             mSer.delete(id);
         }catch(ExceptionOnTyping e){
