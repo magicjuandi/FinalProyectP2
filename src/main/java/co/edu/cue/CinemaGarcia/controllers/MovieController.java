@@ -63,11 +63,6 @@ public class MovieController {
     }
     @PostMapping("movie/deleted")
     public String deleteMovie(@RequestParam("id") int id) throws ExceptionOnTyping{
-        try{
-            mSer.delete(id);
-        }catch(ExceptionOnTyping e){
-            e.printStackTrace();
-        }
         mSer.delete(id);
         return "redirect:/movie/delete?success";
     }
