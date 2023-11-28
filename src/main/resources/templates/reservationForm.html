@@ -23,7 +23,7 @@
 
   <label for="seat">Asiento:</label>
   <select  class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="seat" name="seat">
-    <option th:each="seat : ${seats}" th:value="${seat.id}" th:text="${'Is in room: '+seat.room.number + ' - on the position: '+ seat.position}"></option>
+    <option th:each="seat : ${seats}" th:value="${seat.id}" th:text="${'Está en la sala: '+seat.room.number + ' - en la posición: '+ seat.position}"></option>
   </select>
 
   <br/>
@@ -36,7 +36,6 @@
   <button type="submit" value="Enviar" class="btn btn-primary" style="background-color: #0c0096; font-family: 'Lobster Two', cursive;">Enviar</button>
 </form>
 </div>
-<!-- Display success message if redirected with success parameter -->
 <div th:if="${param.success}" class="container mt-4">
   <p style="color: #0ca307;"><h3>Reservación guardada</h3></p>
 </div>
