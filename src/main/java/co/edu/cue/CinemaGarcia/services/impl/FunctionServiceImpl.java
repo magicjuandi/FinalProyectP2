@@ -1,6 +1,7 @@
 package co.edu.cue.CinemaGarcia.services.impl;
 
 import co.edu.cue.CinemaGarcia.domain.entities.Function;
+import co.edu.cue.CinemaGarcia.exceptions.ExceptionOnTyping;
 import co.edu.cue.CinemaGarcia.mapping.dtos.FunctionDto;
 import co.edu.cue.CinemaGarcia.mapping.mappers.FunctionMapper;
 import co.edu.cue.CinemaGarcia.repositories.FunctionRepository;
@@ -29,7 +30,7 @@ public class FunctionServiceImpl implements FunctionService {
     @Override
     public FunctionDto byId(int id) {
         System.out.println("Here is byId");
-        Function function = fRep.findById(id).orElseThrow();
+        Function function = fRep.findById(id).orElseThrow(()-> new ExceptionOnTyping("Function not Found"));
         FunctionDto functionDto = FunctionMapper.mapFrom(function);
         return functionDto;
     }
@@ -40,5 +41,16 @@ public class FunctionServiceImpl implements FunctionService {
         Function function = FunctionMapper.mapFrom(t);
         fRep.save(function);
     }
+
+    @Override
+    public boolean findByMovieId(int id) {
+        if(fRep.findFunctionByMovieId(id) == false){
+            return false;
+        }else{
+            return true;
+        }
+
+    }
+
 
 }

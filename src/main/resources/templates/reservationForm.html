@@ -3,40 +3,42 @@
 <head>
   <title>Crear Reserva</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
+  <div class="container mt-4">
+    <h1 class="display-1">~Crear Reserva~</h1>
+  </div>
 </head>
 <body>
-<h2>Crear Reserva</h2>
 
+<div class="container mt-4">
 <form th:action="@{/reservation/new}" method="post" class="border p-3 form">
-  <label for="function">Function:</label>
+  <label for="function">Funcion:</label>
   <div class="select-container">
 
-    <select id="function" name="function">
+    <select  class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="function" name="function">
       <option th:each="function : ${functions}" th:value="${function.id}" th:text="${function.movie.name + ' - is on room: ' + function.room.number + ' - on the schedule: ' + function.schedule}"></option>
     </select>
   </div>
 
   <br/>
 
-  <label for="seat">Seat:</label>
-  <select id="seat" name="seat">
+  <label for="seat">Asiento:</label>
+  <select  class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="seat" name="seat">
     <option th:each="seat : ${seats}" th:value="${seat.id}" th:text="${'Is in room: '+seat.room.number + ' - on the position: '+ seat.position}"></option>
   </select>
 
   <br/>
-  <label for="clientN">Name:</label>
+  <label for="clientN">Nombre:</label>
   <input type="text" name="clientN" id="clientN" class="form-control">
-  <label for="clientP">Phone:</label>
+  <label for="clientP">Celular:</label>
   <input type="text" name="clientP" id="clientP" class="form-control">
   <br/>
 
   <button type="submit" value="Enviar" class="btn btn-primary" style="background-color: #0c0096; font-family: 'Lobster Two', cursive;">Enviar</button>
 </form>
-
+</div>
 <!-- Display success message if redirected with success parameter -->
-<div th:if="${param.success}">
-  <p style="color: green;">Reservación guardada</p>
+<div th:if="${param.success}" class="container mt-4">
+  <p style="color: #0ca307;"><h3>Reservación guardada</h3></p>
 </div>
 </body>
 </html>

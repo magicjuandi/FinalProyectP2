@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Eliminar Película</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+</head>
+<body>
+<h2>Elimar Película</h2>
+<form th:action="@{/movie/deleted}" method="post" class="border p-3 form">
+
+  <div class="container mt-4">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <td>
+          <h3>Id:</h3>
+        </td>
+        <td>
+          <h3>Nombre:</h3>
+        </td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="movie: ${movies}" style="font-size: 18px;">
+        <td class="table-primary" th:text="${movie.id}"></td>
+        <td class="table-primary" th:text="${movie.name}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="container mt-4">
+    <label for="id">Id:</label>
+    <input type="text" name="id" id="id" class="form-control">
+    <button type="submit" value="Enviar" class="btn btn-primary" style="background-color: #0c0096; font-family: 'Lobster Two', cursive;">Enviar</button>
+  </div>
+</form>
+<div th:if="${param.success}" class="container mt-4">
+  <p style="color: green;"><h3>Pelicula Eliminada!</h3></p>
+</div>
+</body>
+</html>

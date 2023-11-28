@@ -11,4 +11,5 @@ public interface FunctionService {
     FunctionDto byId(int id);
 
     void save(FunctionDto t);
+    boolean findByMovieId(int id);
 }

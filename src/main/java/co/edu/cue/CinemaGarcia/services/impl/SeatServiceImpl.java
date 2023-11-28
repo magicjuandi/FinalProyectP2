@@ -1,6 +1,7 @@
 package co.edu.cue.CinemaGarcia.services.impl;
 
 import co.edu.cue.CinemaGarcia.domain.entities.Seat;
+import co.edu.cue.CinemaGarcia.exceptions.ExceptionOnTyping;
 import co.edu.cue.CinemaGarcia.mapping.dtos.SeatDto;
 import co.edu.cue.CinemaGarcia.mapping.mappers.SeatMapper;
 import co.edu.cue.CinemaGarcia.repositories.SeatRepository;
@@ -27,7 +28,7 @@ public class SeatServiceImpl implements SeatService {
     @Override
     public SeatDto byId(int id) {
         System.out.println("Here is to find by id");
-        Seat seat = sRep.findById(id).orElseThrow();
+        Seat seat = sRep.findById(id).orElseThrow(()-> new ExceptionOnTyping("Seat not Found"));
         SeatDto seatDto = SeatMapper.mapFrom(seat);
         return seatDto;
     }

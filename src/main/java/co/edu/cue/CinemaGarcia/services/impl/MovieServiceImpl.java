@@ -1,6 +1,8 @@
 package co.edu.cue.CinemaGarcia.services.impl;
 
 import co.edu.cue.CinemaGarcia.domain.entities.Movie;
+import co.edu.cue.CinemaGarcia.exceptions.ExceptionOnTyping;
+import co.edu.cue.CinemaGarcia.mapping.dtos.FunctionDto;
 import co.edu.cue.CinemaGarcia.mapping.dtos.MovieDto;
 import co.edu.cue.CinemaGarcia.mapping.mappers.MovieMapper;
 import co.edu.cue.CinemaGarcia.repositories.MovieRepository;
@@ -29,7 +31,7 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public MovieDto byId(int id) {
         System.out.println("Here is byId");
-        Movie movie = mRep.findById(id).orElseThrow();
+        Movie movie = mRep.findById(id).orElseThrow(()-> new ExceptionOnTyping("Movie not Found"));
         MovieDto movieDto = MovieMapper.mapFrom(movie);
         return movieDto;
     }
@@ -40,4 +42,12 @@ public class MovieServiceImpl implements MovieService {
         Movie movie = MovieMapper.mapFrom(t);
         mRep.save(movie);
     }
+
+    @Override
+    public void delete(int id) {
+        Movie movie = mRep.findById(id).orElseThrow(()-> new ExceptionOnTyping("Movie not Found"));
+        mRep.delete(movie);
+    }
+
+
 }

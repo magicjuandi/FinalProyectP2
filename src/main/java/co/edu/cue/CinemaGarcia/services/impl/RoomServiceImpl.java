@@ -1,6 +1,7 @@
 package co.edu.cue.CinemaGarcia.services.impl;
 
 import co.edu.cue.CinemaGarcia.domain.entities.Room;
+import co.edu.cue.CinemaGarcia.exceptions.ExceptionOnTyping;
 import co.edu.cue.CinemaGarcia.mapping.dtos.RoomDto;
 import co.edu.cue.CinemaGarcia.mapping.mappers.RoomMapper;
 import co.edu.cue.CinemaGarcia.repositories.RoomRepository;
@@ -27,7 +28,7 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public RoomDto byId(int id) {
-        Room room = rRep.findById(id).orElseThrow();
+        Room room = rRep.findById(id).orElseThrow(()-> new ExceptionOnTyping("Room not Found"));
         RoomDto roomDto = RoomMapper.mapFrom(room);
         return roomDto;
     }

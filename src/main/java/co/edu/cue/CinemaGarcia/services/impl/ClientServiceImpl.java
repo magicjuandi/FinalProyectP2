@@ -1,6 +1,7 @@
 package co.edu.cue.CinemaGarcia.services.impl;
 
 import co.edu.cue.CinemaGarcia.domain.entities.Client;
+import co.edu.cue.CinemaGarcia.exceptions.ExceptionOnTyping;
 import co.edu.cue.CinemaGarcia.mapping.dtos.ClientDto;
 import co.edu.cue.CinemaGarcia.mapping.mappers.ClientMapper;
 import co.edu.cue.CinemaGarcia.repositories.ClientRepository;
@@ -27,16 +28,27 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public ClientDto byId(int id) {
         System.out.println("Here is to find by id");
-        Client client = cRep.findById(id).orElseThrow();
+        Client client = cRep.findById(id).orElseThrow(()-> new ExceptionOnTyping("Client not Found"));
         ClientDto clientDto = ClientMapper.mapFrom(client);
         return clientDto;
     }
 
     @Override
-    public ClientDto findByNameAndPhone(String name, String phone){
+    public ClientDto byNameAndPhone(String name, String phone){
+        System.out.println("Here is to find by name and phone");
         Client client = cRep.findByNameAndPhone(name,phone);
+        System.out.println(client.getId());
         ClientDto clientDto = ClientMapper.mapFrom(client);
         return clientDto;
+    }
+
+    @Override
+    public boolean existByNameAndPhone(String name, String phone) {
+        if (cRep.existsByNameAndPhone(name, phone) == false) {
+            return false;
+        }else{
+            return true;
+        }
     }
 
 }

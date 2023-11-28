@@ -1,6 +1,7 @@
 package co.edu.cue.CinemaGarcia.services.impl;
 
 import co.edu.cue.CinemaGarcia.domain.entities.Reservation;
+import co.edu.cue.CinemaGarcia.exceptions.ExceptionOnTyping;
 import co.edu.cue.CinemaGarcia.mapping.dtos.ReservationDto;
 import co.edu.cue.CinemaGarcia.mapping.mappers.ReservationMapper;
 import co.edu.cue.CinemaGarcia.repositories.ReservationRepository;
@@ -28,7 +29,7 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public ReservationDto byId(int id) {
         System.out.println("Here is byId");
-        Reservation reservation =  rRep.findById(id).orElseThrow();
+        Reservation reservation =  rRep.findById(id).orElseThrow(()-> new ExceptionOnTyping("Reservation not Found"));
         ReservationDto reservationDto = ReservationMapper.mapFrom(reservation);
         return reservationDto;
     }

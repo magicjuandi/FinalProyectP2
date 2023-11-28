@@ -40,7 +40,7 @@ public class ReservationController {
                                         @RequestParam("clientP")String phoneC,
                                         @RequestParam("function")int idF){
 
-        if(cSer.findByNameAndPhone(nameC, phoneC) == null){
+        if(cSer.existByNameAndPhone(nameC,phoneC) == false){
             ClientDto clientDto = ClientDto.builder()
                     .name(nameC)
                     .phone(phoneC)
@@ -50,7 +50,7 @@ public class ReservationController {
         ReservationDto reservationDto = ReservationDto
                 .builder()
                 .seat(SeatMapper.mapFrom(sSer.byId(idS)))
-                .client(ClientMapper.mapFrom(cSer.findByNameAndPhone(nameC,phoneC)))
+                .client(ClientMapper.mapFrom(cSer.byNameAndPhone(nameC,phoneC)))
                 .function(FunctionMapper.mapFrom(fSer.byId(idF)))
                 .build();
         rSer.save(reservationDto);
