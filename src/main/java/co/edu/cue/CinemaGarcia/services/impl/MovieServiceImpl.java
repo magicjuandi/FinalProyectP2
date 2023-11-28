@@ -2,35 +2,42 @@ package co.edu.cue.CinemaGarcia.services.impl;
 
 import co.edu.cue.CinemaGarcia.domain.entities.Movie;
 import co.edu.cue.CinemaGarcia.mapping.dtos.MovieDto;
+import co.edu.cue.CinemaGarcia.mapping.mappers.MovieMapper;
 import co.edu.cue.CinemaGarcia.repositories.MovieRepository;
 import co.edu.cue.CinemaGarcia.services.MovieService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class MovieServiceImpl implements MovieService {
-    @Autowired
-    private MovieRepository mRep;
+    private final MovieRepository mRep;
 
+    public MovieServiceImpl(MovieRepository mRep) {
+        this.mRep = mRep;
+    }
 
 
     @Override
-    public List<Movie> list() {
+    public List<MovieDto> list() {
         System.out.println("Here is the list");
-        return (List<Movie>) mRep.findAll();
+        List<Movie> movie = (List<Movie>) mRep.findAll();
+        List<MovieDto> movieDto = MovieMapper.mapFrom(movie);
+        return movieDto;
     }
 
     @Override
-    public Movie byId(int id) {
+    public MovieDto byId(int id) {
         System.out.println("Here is byId");
-        return mRep.findById(id).orElseThrow();
+        Movie movie = mRep.findById(id).orElseThrow();
+        MovieDto movieDto = MovieMapper.mapFrom(movie);
+        return movieDto;
     }
 
     @Override
-    public void save(Movie t) {
+    public void save(MovieDto t) {
         System.out.println("Here is to save");
-        mRep.save(t);
+        Movie movie = MovieMapper.mapFrom(t);
+        mRep.save(movie);
     }
 }

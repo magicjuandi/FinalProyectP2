@@ -2,10 +2,11 @@ package co.edu.cue.CinemaGarcia.mapping.mappers;
 
 import co.edu.cue.CinemaGarcia.domain.entities.Movie;
 import co.edu.cue.CinemaGarcia.mapping.dtos.MovieDto;
+import lombok.Builder;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Builder
 public class MovieMapper {
     public static MovieDto mapFrom(Movie source){
         return new MovieDto(source.getId(),

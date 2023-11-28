@@ -2,6 +2,7 @@ package co.edu.cue.CinemaGarcia.services.impl;
 
 import co.edu.cue.CinemaGarcia.domain.entities.Reservation;
 import co.edu.cue.CinemaGarcia.mapping.dtos.ReservationDto;
+import co.edu.cue.CinemaGarcia.mapping.mappers.ReservationMapper;
 import co.edu.cue.CinemaGarcia.repositories.ReservationRepository;
 import co.edu.cue.CinemaGarcia.services.ReservationService;
 import org.springframework.stereotype.Service;
@@ -17,21 +18,26 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public List<Reservation> list() {
+    public List<ReservationDto> list() {
         System.out.println("Here is the list");
-        return (List<Reservation>) rRep.findAll();
+        List<Reservation> reservation = (List<Reservation>) rRep.findAll();
+        List<ReservationDto> reservationDto = ReservationMapper.mapFrom(reservation);
+        return reservationDto;
     }
 
     @Override
-    public Reservation byId(int id) {
+    public ReservationDto byId(int id) {
         System.out.println("Here is byId");
-        return rRep.findById(id).orElseThrow();
+        Reservation reservation =  rRep.findById(id).orElseThrow();
+        ReservationDto reservationDto = ReservationMapper.mapFrom(reservation);
+        return reservationDto;
     }
 
     @Override
-    public void save(Reservation t) {
+    public void save(ReservationDto t) {
         System.out.println("Here is to save");
-        t.getSeat().setAvailable(true);
-        rRep.save(t);
+        Reservation reservation = ReservationMapper.mapFrom(t);
+        reservation.getSeat().setAvailable(true);
+        rRep.save(reservation);
     }
 }

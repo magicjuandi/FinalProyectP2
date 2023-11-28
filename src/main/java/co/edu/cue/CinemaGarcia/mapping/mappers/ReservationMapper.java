@@ -2,10 +2,11 @@ package co.edu.cue.CinemaGarcia.mapping.mappers;
 
 import co.edu.cue.CinemaGarcia.domain.entities.Reservation;
 import co.edu.cue.CinemaGarcia.mapping.dtos.ReservationDto;
+import lombok.Builder;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Builder
 public class ReservationMapper {
     public static ReservationDto mapFrom(Reservation source){
         return new ReservationDto(source.getId(),

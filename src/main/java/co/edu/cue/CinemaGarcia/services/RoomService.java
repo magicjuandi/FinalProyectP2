@@ -7,6 +7,6 @@ import co.edu.cue.CinemaGarcia.mapping.dtos.RoomDto;
 import java.util.List;
 
 public interface RoomService {
-    List<Room> list();
-    Room byId(int id);
+    List<RoomDto> list();
+    RoomDto byId(int id);
 }

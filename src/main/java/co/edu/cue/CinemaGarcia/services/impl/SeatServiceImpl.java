@@ -1,8 +1,8 @@
 package co.edu.cue.CinemaGarcia.services.impl;
 
 import co.edu.cue.CinemaGarcia.domain.entities.Seat;
-import co.edu.cue.CinemaGarcia.domain.entities.User;
 import co.edu.cue.CinemaGarcia.mapping.dtos.SeatDto;
+import co.edu.cue.CinemaGarcia.mapping.mappers.SeatMapper;
 import co.edu.cue.CinemaGarcia.repositories.SeatRepository;
 import co.edu.cue.CinemaGarcia.services.SeatService;
 import org.springframework.stereotype.Service;
@@ -18,29 +18,32 @@ public class SeatServiceImpl implements SeatService {
     }
 
     @Override
-    public List<Seat> list() {
+    public List<SeatDto> list() {
         System.out.println("Here is the list");
-        return (List<Seat>) sRep.findAll();
+        List<Seat> seat = (List<Seat>) sRep.findAll();
+        List<SeatDto> seatDto = SeatMapper.mapFrom(seat);
+        return seatDto;
     }
     @Override
-    public Seat byId(int id) {
+    public SeatDto byId(int id) {
         System.out.println("Here is to find by id");
-        return sRep.findById(id).orElseThrow();
+        Seat seat = sRep.findById(id).orElseThrow();
+        SeatDto seatDto = SeatMapper.mapFrom(seat);
+        return seatDto;
     }
 
     @Override
-    public List<Seat> findAllByRoomId(int id) {
-        return sRep.findAllByRoomId(id);
-    }
-
-    @Override
-    public List<Seat> findByAvailable() {
+    public List<SeatDto> findByAvailable() {
         boolean available = false;
-        return sRep.findSeatsByAvailable(available);
+        List<Seat> seat = sRep.findSeatsByAvailable(available);
+        List<SeatDto> seatDto = SeatMapper.mapFrom(seat);
+        return seatDto;
     }
 
     @Override
-    public Seat save(Seat t) {
-        return sRep.save(t);
+    public void save(SeatDto t) {
+        Seat seat = SeatMapper.mapFrom(t);
+        sRep.save(seat);
     }
+
 }

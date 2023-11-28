@@ -2,10 +2,11 @@ package co.edu.cue.CinemaGarcia.mapping.mappers;
 
 import co.edu.cue.CinemaGarcia.domain.entities.Room;
 import co.edu.cue.CinemaGarcia.mapping.dtos.RoomDto;
+import lombok.Builder;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Builder
 public class RoomMapper {
     public static RoomDto mapFrom(Room source){
         return new RoomDto(source.getId(),

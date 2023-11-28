@@ -2,10 +2,11 @@ package co.edu.cue.CinemaGarcia.mapping.mappers;
 
 import co.edu.cue.CinemaGarcia.domain.entities.Seat;
 import co.edu.cue.CinemaGarcia.mapping.dtos.SeatDto;
+import lombok.Builder;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Builder
 public class SeatMapper {
     public static SeatDto mapFrom(Seat source){
         return new SeatDto(source.getId(),

@@ -7,9 +7,9 @@ import co.edu.cue.CinemaGarcia.mapping.dtos.ReservationDto;
 import java.util.List;
 
 public interface ReservationService {
-    List<Reservation> list();
+    List<ReservationDto> list();
 
-    Reservation byId(int id);
+    ReservationDto byId(int id);
 
-    void save(Reservation t);
+    void save(ReservationDto t);
 }

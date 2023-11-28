@@ -6,9 +6,9 @@ import co.edu.cue.CinemaGarcia.mapping.dtos.FunctionDto;
 import java.util.List;
 
 public interface FunctionService {
-    List<Function> list();
+    List<FunctionDto> list();
 
-    Function byId(int id);
+    FunctionDto byId(int id);
 
-    void save(Function t);
+    void save(FunctionDto t);
 }

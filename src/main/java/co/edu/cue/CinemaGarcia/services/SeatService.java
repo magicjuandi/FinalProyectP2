@@ -7,9 +7,8 @@ import co.edu.cue.CinemaGarcia.mapping.dtos.SeatDto;
 import java.util.List;
 
 public interface SeatService {
-    List<Seat> list();
-    Seat byId(int id);
-    List<Seat> findAllByRoomId(int id);
-    List<Seat> findByAvailable();
-    Seat save(Seat t);
+    List<SeatDto> list();
+    SeatDto byId(int id);
+    List<SeatDto> findByAvailable();
+    void save(SeatDto t);
 }

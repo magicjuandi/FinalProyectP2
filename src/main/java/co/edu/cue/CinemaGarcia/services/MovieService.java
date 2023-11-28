@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 public interface MovieService {
-    List<Movie> list();
+    List<MovieDto> list();
 
-    Movie byId(int id);
+    MovieDto byId(int id);
 
-    void save(Movie t);
+    void save(MovieDto t);
 }

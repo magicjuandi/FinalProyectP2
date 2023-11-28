@@ -1,6 +1,7 @@
 package co.edu.cue.CinemaGarcia.controllers;
 
 import co.edu.cue.CinemaGarcia.domain.entities.Movie;
+import co.edu.cue.CinemaGarcia.mapping.dtos.MovieDto;
 import co.edu.cue.CinemaGarcia.services.impl.MovieServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +23,7 @@ public class MovieController {
 
     @GetMapping("/movie/list")
     public String listAllMovie(Model model){
-        List<Movie> movieList = mSer.list();
+        List<MovieDto> movieList = mSer.list();
         model.addAttribute("movieList", movieList);
         return "index";
     }
@@ -34,9 +35,8 @@ public class MovieController {
     }
     @PostMapping("movie/new")
     public String createNewMovie(@RequestParam("name") String name){
-        Movie movie = new Movie();
-        movie.setName(name);
-        mSer.save(movie);
+        MovieDto movieDto = MovieDto.builder().name(name).build();
+        mSer.save(movieDto);
         return "redirect:/movie/create?success";
     }
 }

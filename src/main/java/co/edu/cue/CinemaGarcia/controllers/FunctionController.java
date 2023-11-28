@@ -2,6 +2,9 @@ package co.edu.cue.CinemaGarcia.controllers;
 
 import co.edu.cue.CinemaGarcia.domain.entities.Function;
 import co.edu.cue.CinemaGarcia.domain.enums.Schedule;
+import co.edu.cue.CinemaGarcia.mapping.dtos.FunctionDto;
+import co.edu.cue.CinemaGarcia.mapping.mappers.MovieMapper;
+import co.edu.cue.CinemaGarcia.mapping.mappers.RoomMapper;
 import co.edu.cue.CinemaGarcia.services.impl.FunctionServiceImpl;
 import co.edu.cue.CinemaGarcia.services.impl.MovieServiceImpl;
 import co.edu.cue.CinemaGarcia.services.impl.RoomServiceImpl;
@@ -28,12 +31,12 @@ public class FunctionController {
     public String createNewFunction(@RequestParam("movie")int idM,
                                     @RequestParam("room")int idR,
                                     @RequestParam("schedule")String schedule){
-        Function function = Function.builder()
-                .room(rSer.byId(idR))
-                .movie(mSer.byId(idM))
-                .schedule(Schedule.valueOf(schedule))
+        FunctionDto functionDto = FunctionDto.builder()
+                .room(RoomMapper.mapFrom(rSer.byId(idR)))
+                .movie(MovieMapper.mapFrom(mSer.byId(idM)))
+                .schedule(Schedule.parse(schedule))
                 .build();
-        fSer.save(function);
+        fSer.save(functionDto);
 
         return "redirect:/function/create?success";
     }
@@ -42,6 +45,7 @@ public class FunctionController {
         ModelAndView modelAndView = new ModelAndView("functionForm");
         modelAndView.addObject("movies", mSer.list());
         modelAndView.addObject("rooms", rSer.list());
+        modelAndView.addObject("schedules", Schedule.getValues());
         return modelAndView;
     }
 

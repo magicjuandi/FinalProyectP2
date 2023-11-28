@@ -1,8 +1,14 @@
 package co.edu.cue.CinemaGarcia.controllers;
 
 import co.edu.cue.CinemaGarcia.domain.entities.Client;
+import co.edu.cue.CinemaGarcia.domain.entities.Function;
 import co.edu.cue.CinemaGarcia.domain.entities.Reservation;
 import co.edu.cue.CinemaGarcia.domain.entities.Seat;
+import co.edu.cue.CinemaGarcia.mapping.dtos.ClientDto;
+import co.edu.cue.CinemaGarcia.mapping.dtos.ReservationDto;
+import co.edu.cue.CinemaGarcia.mapping.mappers.ClientMapper;
+import co.edu.cue.CinemaGarcia.mapping.mappers.FunctionMapper;
+import co.edu.cue.CinemaGarcia.mapping.mappers.SeatMapper;
 import co.edu.cue.CinemaGarcia.services.impl.ClientServiceImpl;
 import co.edu.cue.CinemaGarcia.services.impl.FunctionServiceImpl;
 import co.edu.cue.CinemaGarcia.services.impl.ReservationServiceImpl;
@@ -35,27 +41,29 @@ public class ReservationController {
                                         @RequestParam("function")int idF){
 
         if(cSer.findByNameAndPhone(nameC, phoneC) == null){
-            Client client = Client.builder()
+            ClientDto clientDto = ClientDto.builder()
                     .name(nameC)
                     .phone(phoneC)
                     .build();
-            cSer.save(client);
+            cSer.save(clientDto);
         }
-        Reservation reservation = Reservation
+        ReservationDto reservationDto = ReservationDto
                 .builder()
-                .seat(sSer.byId(idS))
-                .client(cSer.findByNameAndPhone(nameC,phoneC))
-                .function(fSer.byId(idF))
+                .seat(SeatMapper.mapFrom(sSer.byId(idS)))
+                .client(ClientMapper.mapFrom(cSer.findByNameAndPhone(nameC,phoneC)))
+                .function(FunctionMapper.mapFrom(fSer.byId(idF)))
                 .build();
-        rSer.save(reservation);
+        rSer.save(reservationDto);
 
         return "redirect:/reservation/create?success";
     }
     @GetMapping("/reservation/create")
-    public ModelAndView createReservation(){
+    public ModelAndView createReservationA(){
         ModelAndView modelAndView = new ModelAndView("reservationForm");
-        modelAndView.addObject("seats", sSer.findByAvailable());
         modelAndView.addObject("functions", fSer.list());
+        modelAndView.addObject("seats", sSer.findByAvailable());
         return modelAndView;
     }
+
+
 }

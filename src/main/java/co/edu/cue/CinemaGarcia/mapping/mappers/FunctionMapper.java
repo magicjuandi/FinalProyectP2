@@ -2,10 +2,11 @@ package co.edu.cue.CinemaGarcia.mapping.mappers;
 
 import co.edu.cue.CinemaGarcia.domain.entities.Function;
 import co.edu.cue.CinemaGarcia.mapping.dtos.FunctionDto;
+import lombok.Builder;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Builder
 public class FunctionMapper {
     public static FunctionDto mapFrom(Function source){
         return new FunctionDto(source.getId(),

@@ -28,11 +28,7 @@
 
     <label for="schedule">Schedule:</label>
     <select id="schedule" name="schedule">
-        <option>A</option>
-        <option>B</option>
-        <option>C</option>
-        <option>D</option>
-        <option>E</option>
+        <option th:each="Schedule : ${schedules}" th:value="${Schedule}" th:text="${Schedule}"></option>
     </select>
 
     <br/>

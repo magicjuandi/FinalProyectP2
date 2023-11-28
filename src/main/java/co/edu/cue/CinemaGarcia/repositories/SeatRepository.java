@@ -9,6 +9,5 @@ import java.util.List;
 
 @Repository
 public interface SeatRepository extends CrudRepository<Seat,Integer> {
-    List<Seat> findAllByRoomId(int id);
     List<Seat> findSeatsByAvailable(boolean isAvailable);
 }

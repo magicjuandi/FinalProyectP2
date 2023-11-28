@@ -2,6 +2,7 @@ package co.edu.cue.CinemaGarcia.services.impl;
 
 import co.edu.cue.CinemaGarcia.domain.entities.Room;
 import co.edu.cue.CinemaGarcia.mapping.dtos.RoomDto;
+import co.edu.cue.CinemaGarcia.mapping.mappers.RoomMapper;
 import co.edu.cue.CinemaGarcia.repositories.RoomRepository;
 import co.edu.cue.CinemaGarcia.services.RoomService;
 import org.springframework.stereotype.Service;
@@ -17,13 +18,17 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public List<Room> list() {
+    public List<RoomDto> list() {
         System.out.println("Here is the list");
-        return (List<Room>) rRep.findAll();
+        List<Room> room = (List<Room>) rRep.findAll();
+        List<RoomDto> roomDto = RoomMapper.mapFrom(room);
+        return roomDto;
     }
 
     @Override
-    public Room byId(int id) {
-        return rRep.findById(id).orElseThrow();
+    public RoomDto byId(int id) {
+        Room room = rRep.findById(id).orElseThrow();
+        RoomDto roomDto = RoomMapper.mapFrom(room);
+        return roomDto;
     }
 }

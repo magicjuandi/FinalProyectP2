@@ -2,6 +2,7 @@ package co.edu.cue.CinemaGarcia.services.impl;
 
 import co.edu.cue.CinemaGarcia.domain.entities.Function;
 import co.edu.cue.CinemaGarcia.mapping.dtos.FunctionDto;
+import co.edu.cue.CinemaGarcia.mapping.mappers.FunctionMapper;
 import co.edu.cue.CinemaGarcia.repositories.FunctionRepository;
 import co.edu.cue.CinemaGarcia.services.FunctionService;
 import org.springframework.stereotype.Service;
@@ -18,21 +19,26 @@ public class FunctionServiceImpl implements FunctionService {
     }
 
     @Override
-    public List<Function> list() {
+    public List<FunctionDto> list() {
         System.out.println("Here is the list");
-        return (List<Function>) fRep.findAll();
+        List<Function> function = (List<Function>) fRep.findAll();
+        List<FunctionDto> functionDto = FunctionMapper.mapFrom(function);
+        return functionDto;
     }
 
     @Override
-    public Function byId(int id) {
+    public FunctionDto byId(int id) {
         System.out.println("Here is byId");
-        return fRep.findById(id).orElseThrow();
+        Function function = fRep.findById(id).orElseThrow();
+        FunctionDto functionDto = FunctionMapper.mapFrom(function);
+        return functionDto;
     }
 
     @Override
-    public void save(Function t) {
+    public void save(FunctionDto t) {
         System.out.println("Here is to save");
-        fRep.save(t);
+        Function function = FunctionMapper.mapFrom(t);
+        fRep.save(function);
     }
 
 }
