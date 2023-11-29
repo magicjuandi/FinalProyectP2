@@ -8,8 +8,6 @@ import co.edu.cue.CinemaGarcia.repositories.ClientRepository;
 import co.edu.cue.CinemaGarcia.services.ClientService;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class ClientServiceImpl implements ClientService {
     private final ClientRepository cRep;

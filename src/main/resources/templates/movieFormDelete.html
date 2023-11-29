@@ -4,12 +4,83 @@
   <meta charset="UTF-8">
   <title>Eliminar Película</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Arial', sans-serif;
+    }
 
+    h2 {
+      color: #0c0096;
+      font-family: 'Lobster Two', cursive;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .form {
+      max-width: 400px;
+      margin: auto;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #fff;
+    }
+
+    table {
+      width: 100%;
+    }
+
+    th, td {
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .table-primary {
+      background-color: #0c0096;
+      color: #fff;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      margin-bottom: 8px;
+      color: #0c0096;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #0c0096;
+      color: #fff;
+      font-family: 'Lobster Two', cursive;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    p {
+      color: green;
+    }
+  </style>
 </head>
 <body>
-<h2>Elimar Película</h2>
-<form th:action="@{/movie/deleted}" method="post" class="border p-3 form">
+<h2>Eliminar Película</h2>
 
+<form th:action="@{/movie/deleted}" method="post" class="border p-3 form">
   <div class="container mt-4">
     <table class="table table-striped">
       <thead>
@@ -23,21 +94,23 @@
       </tr>
       </thead>
       <tbody>
-      <tr th:each="movie: ${movies}" style="font-size: 18px;">
+      <tr th:each="movie: ${movies}">
         <td class="table-primary" th:text="${movie.id}"></td>
         <td class="table-primary" th:text="${movie.name}"></td>
       </tr>
       </tbody>
     </table>
   </div>
+
   <div class="container mt-4">
     <label for="id">Id:</label>
     <input type="text" name="id" id="id" class="form-control">
-    <button type="submit" value="Enviar" class="btn btn-primary" style="background-color: #0c0096; font-family: 'Lobster Two', cursive;">Enviar</button>
+    <button type="submit" value="Enviar" class="btn btn-primary">Enviar</button>
   </div>
 </form>
+
 <div th:if="${param.success}" class="container mt-4">
-  <p style="color: green;"><h3>Pelicula Eliminada!</h3></p>
+  <p><h3>Película Eliminada con Éxito</h3></p>
 </div>
 </body>
 </html>

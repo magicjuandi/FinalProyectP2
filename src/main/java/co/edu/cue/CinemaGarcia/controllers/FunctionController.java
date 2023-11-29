@@ -1,6 +1,5 @@
 package co.edu.cue.CinemaGarcia.controllers;
 
-import co.edu.cue.CinemaGarcia.domain.entities.Function;
 import co.edu.cue.CinemaGarcia.domain.enums.Schedule;
 import co.edu.cue.CinemaGarcia.mapping.dtos.FunctionDto;
 import co.edu.cue.CinemaGarcia.mapping.mappers.MovieMapper;

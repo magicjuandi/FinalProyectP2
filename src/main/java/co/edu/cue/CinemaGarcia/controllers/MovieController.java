@@ -1,6 +1,5 @@
 package co.edu.cue.CinemaGarcia.controllers;
 
-import co.edu.cue.CinemaGarcia.exceptions.ExceptionOnTyping;
 import co.edu.cue.CinemaGarcia.mapping.dtos.MovieDto;
 import co.edu.cue.CinemaGarcia.services.impl.FunctionServiceImpl;
 import co.edu.cue.CinemaGarcia.services.impl.MovieServiceImpl;
@@ -62,7 +61,7 @@ public class MovieController {
         return modelAndView;
     }
     @PostMapping("movie/deleted")
-    public String deleteMovie(@RequestParam("id") int id) throws ExceptionOnTyping{
+    public String deleteMovie(@RequestParam("id") int id) {
         mSer.delete(id);
         return "redirect:/movie/delete?success";
     }

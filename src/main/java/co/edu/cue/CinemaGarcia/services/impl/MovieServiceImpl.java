@@ -2,7 +2,6 @@ package co.edu.cue.CinemaGarcia.services.impl;
 
 import co.edu.cue.CinemaGarcia.domain.entities.Movie;
 import co.edu.cue.CinemaGarcia.exceptions.ExceptionOnTyping;
-import co.edu.cue.CinemaGarcia.mapping.dtos.FunctionDto;
 import co.edu.cue.CinemaGarcia.mapping.dtos.MovieDto;
 import co.edu.cue.CinemaGarcia.mapping.mappers.MovieMapper;
 import co.edu.cue.CinemaGarcia.repositories.MovieRepository;

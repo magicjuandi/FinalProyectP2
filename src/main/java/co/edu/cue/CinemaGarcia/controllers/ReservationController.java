@@ -1,9 +1,5 @@
 package co.edu.cue.CinemaGarcia.controllers;
 
-import co.edu.cue.CinemaGarcia.domain.entities.Client;
-import co.edu.cue.CinemaGarcia.domain.entities.Function;
-import co.edu.cue.CinemaGarcia.domain.entities.Reservation;
-import co.edu.cue.CinemaGarcia.domain.entities.Seat;
 import co.edu.cue.CinemaGarcia.mapping.dtos.ClientDto;
 import co.edu.cue.CinemaGarcia.mapping.dtos.ReservationDto;
 import co.edu.cue.CinemaGarcia.mapping.mappers.ClientMapper;

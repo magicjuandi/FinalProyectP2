@@ -1,6 +1,5 @@
 package co.edu.cue.CinemaGarcia.services;
 
-import co.edu.cue.CinemaGarcia.domain.entities.Function;
 import co.edu.cue.CinemaGarcia.mapping.dtos.FunctionDto;
 
 import java.util.List;
